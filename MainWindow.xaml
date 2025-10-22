@@ -1,0 +1,112 @@
+﻿<Window x:Class="UniverseSimulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UniverseSimulator"
+        mc:Ignorable="d"
+        Title="宇宙模拟人生（极简版）" Height="600" Width="800"
+        Background="#1E1E2E">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#302D41"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="0,10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" 
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#575268"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 标题 -->
+        <TextBlock Grid.Row="0" 
+                   Text="宇宙模拟人生" 
+                   FontSize="32" 
+                   FontWeight="Bold" 
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,20"/>
+        
+        <!-- 内容区域 -->
+        <Border Grid.Row="1" 
+                Background="#282737" 
+                CornerRadius="10" 
+                Padding="20">
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock x:Name="ResultText" 
+                               Text="点击下方按钮，开始一段宇宙文明的旅程..." 
+                               FontSize="16"
+                               TextAlignment="Center"/>
+                    
+                    <!-- 结果显示区域 -->
+                    <Grid x:Name="ResultGrid" Margin="0,20,0,0" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="星球：" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" x:Name="PlanetText"/>
+                        
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="种族：" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="SpeciesText" Margin="0,10,0,5"/>
+                        
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="科技等级：" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" x:Name="TechLevelText" Margin="0,10,0,5"/>
+                        
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="文明历程：" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" x:Name="CivilizationText" Margin="0,10,0,5"/>
+                        
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="灭亡原因：" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" x:Name="ExtinctionText" Margin="0,10,0,5"/>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        
+        <!-- 按钮区域 -->
+        <Button Grid.Row="2" 
+                Content="生成宇宙文明" 
+                HorizontalAlignment="Center" 
+                Width="200"
+                Margin="0,20,0,0"
+                Click="GenerateButton_Click"/>
+    </Grid>
+</Window>
